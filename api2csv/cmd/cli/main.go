@@ -5,19 +5,23 @@ import (
 
 	"github.com/CodelyTV/golang-examples/api2csv/internal/cli"
 	"github.com/CodelyTV/golang-examples/api2csv/internal/fetching"
-	inmemory "github.com/CodelyTV/golang-examples/api2csv/internal/storage"
+	"github.com/CodelyTV/golang-examples/api2csv/internal/storaging"
+
+	// inmemory "github.com/CodelyTV/golang-examples/api2csv/internal/storage/inmem"
+	csv "github.com/CodelyTV/golang-examples/api2csv/internal/storage/csv"
+	swapi "github.com/CodelyTV/golang-examples/api2csv/internal/storage/swapi"
 	"github.com/spf13/cobra"
 )
 
 func main() {
-	fmt.Println("wopwop")
+	fmt.Println("wop wop wop 🥤")
 
-	// var repo peoplecli.PeopleRepo
-	// repo = inmemory.NewRepository()
-	repo := inmemory.NewRepository()
+	repo := swapi.NewRepository()
+	fileRepo := csv.NewStorageRepo()
 
 	fetchingService := fetching.NewService(repo)
+	storagingService := storaging.NewService(fileRepo)
 	rootCmd := &cobra.Command{Use: "cli"}
-	rootCmd.AddCommand(cli.InitETLCmd(fetchingService))
+	rootCmd.AddCommand(cli.InitETLCmd(fetchingService, storagingService))
 	rootCmd.Execute()
 }

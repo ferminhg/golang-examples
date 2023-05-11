@@ -12,7 +12,6 @@ type service struct {
 	pR etlcli.PeopleRepo
 }
 
-// NewService creates an adding service with the necessary dependencies
 func NewService(r etlcli.PeopleRepo) Service {
 	return &service{r}
 }

@@ -1,22 +1,21 @@
 package etlcli
 
-// https://swapi.dev/
 type People struct {
-	Name   string
-	Gender string
-	Height int
-	Mass   int
+	Name   string `json:"name"`
+	Gender string `json:"gender"`
 }
 
 type PeopleRepo interface {
 	GetPeople() ([]People, error)
 }
 
-func NewPeople(Name string, Gender string, Height int, Mass int) People {
+type StorageRepo interface {
+	StoragePeople(people []People) error
+}
+
+func NewPeople(Name string, Gender string) People {
 	return People{
 		Name:   Name,
 		Gender: Gender,
-		Height: Height,
-		Mass:   Mass,
 	}
 }

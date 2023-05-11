@@ -14,9 +14,9 @@ func NewRepository() peoplecli.PeopleRepo {
 func (r *repository) GetPeople() ([]peoplecli.People, error) {
 	people := []peoplecli.People{}
 	people = append(people,
-		peoplecli.NewPeople("John Doe", "X", 0, 0),
-		peoplecli.NewPeople("Beka", "Female", 10, 8),
-		peoplecli.NewPeople("Maya", "Female", 5, 6),
+		peoplecli.NewPeople("John Doe", "X"),
+		peoplecli.NewPeople("Beka", "Female"),
+		peoplecli.NewPeople("Maya", "Female"),
 	)
 	return people, nil
 }
